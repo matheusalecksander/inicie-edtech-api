@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  app:
+    container_name: api-container
+    build: .
+    image: inicie-api
+    restart: always
+    volumes:
+      - ./dist:/usr/app/dist
+    ports:
+      - "3000:3000"
+    command: npm start
