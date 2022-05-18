@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "rimraf dist && npx tsc",
+    "start:dev": "nodemon -L --watch ./dist ./dist/index.js",
     "up:detached": "npm run build && docker-compose up -d",
     "up:dev": "npm run build && docker-compose up",
     "down": "docker-compose down",
@@ -39,5 +40,8 @@
     "*.{js,ts}": [
       "eslint --quiet --fix"
     ]
+  },
+  "dependencies": {
+    "nodemon": "^2.0.16"
   }
 }

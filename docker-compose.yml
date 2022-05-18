@@ -10,4 +10,4 @@ services:
       - ./package.json:/usr/app/package.json
     ports:
       - "3000:3000"
-    command: sh -c "npm install --only=prod && npm start"
+    command: sh -c "npm install --only=prod && npm run start:dev"
