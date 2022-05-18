@@ -8,7 +8,9 @@
   },
   "scripts": {
     "build": "rimraf dist && npx tsc",
-    "dev": "ts-node-dev src/index.ts",
+    "up:detached": "npm run build && docker-compose up -d",
+    "up:dev": "npm run build && docker-compose up",
+    "down": "docker-compose down",
     "start": "node ./dist/index.js",
     "test": "jest --no-cache --watchAll"
   },
