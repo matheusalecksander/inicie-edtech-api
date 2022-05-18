@@ -2,11 +2,12 @@ version: '3.9'
 services:
   app:
     container_name: api-container
-    build: .
-    image: inicie-api
+    image: node:16-alpine
+    working_dir: /usr/app/
     restart: always
     volumes:
-      - ./dist:/usr/app/dist
+      - ./dist:/usr/app/dist/
+      - ./package.json:/usr/app/package.json
     ports:
       - "3000:3000"
-    command: npm start
+    command: sh -c "npm install --only=prod && npm start"
