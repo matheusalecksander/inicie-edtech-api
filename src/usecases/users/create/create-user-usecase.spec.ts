@@ -1,6 +1,7 @@
 import { UserData } from '../../../core/entities/users/data/user-data'
 import { CreateUserUseCase } from './create-user-usecase'
 import { UsersRepository } from '../../../repositories/users-repository'
+import { MissingParamError } from '../../../utils/errors/missing-param-error'
 
 function makeSut() {
   const repository = new UsersRepository()
@@ -36,6 +37,6 @@ describe('CreateUserUseCase', () => {
     }
 
     const createdUser = sut.perform(invalidUser)
-    expect(createdUser).rejects.toThrow(new Error('name'))
+    expect(createdUser).rejects.toThrow(new MissingParamError('name'))
   })
 })
