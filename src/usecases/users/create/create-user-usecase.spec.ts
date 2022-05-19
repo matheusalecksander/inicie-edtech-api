@@ -10,7 +10,7 @@ function makeSut() {
 }
 
 describe('CreateUserUseCase', () => {
-  it('should returns the created user with gerenated id', async () => {
+  it(`should call's repository with correct values and returns the created user with gerenated id`, async () => {
     const sut = makeSut()
 
     const anyUser: UserData = {
@@ -23,5 +23,19 @@ describe('CreateUserUseCase', () => {
     const createdUser = await sut.perform(anyUser)
 
     expect(createdUser).toEqual({ ...anyUser, id: createdUser.id })
+  })
+
+  it('should return an error if no name are provided', async () => {
+    const sut = makeSut()
+
+    const invalidUser: UserData = {
+      email: 'any_email@email.com',
+      gender: 'any_gender',
+      name: '',
+      status: 'any_status',
+    }
+
+    const createdUser = sut.perform(invalidUser)
+    expect(createdUser).rejects.toThrow(new Error('name'))
   })
 })
