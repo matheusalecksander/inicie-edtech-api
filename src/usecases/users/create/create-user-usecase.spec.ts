@@ -1,10 +1,19 @@
 import { UserData } from '../../../core/entities/users/data/user-data'
 import { CreateUserUseCase } from './create-user-usecase'
+import { IUsersRepository } from '../../../core/entities/users/repository/users-repository'
+import { UserModel } from '../../../core/entities/users/models/user-model'
 
 function makeSut() {
-  const sut = new CreateUserUseCase()
+  const repository = new UsersRepository()
+  const sut = new CreateUserUseCase(repository)
 
   return sut
+}
+
+class UsersRepository implements IUsersRepository {
+  async create(data: UserData): Promise<UserModel> {
+    return { ...data, id: 'any_id' }
+  }
 }
 
 describe('CreateUserUseCase', () => {

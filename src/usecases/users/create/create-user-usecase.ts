@@ -1,11 +1,16 @@
-import { UserData } from '../../../core/entities/users/data/user-data'
-import { UserModel } from '../../../core/entities/users/models/user-model'
-import { ICreateUserUsecase } from '../../../core/entities/users/usecases/create-usecase'
+import { UserData } from '~/core/entities/users/data/user-data'
+import { UserModel } from '~/core/entities/users/models/user-model'
+import { ICreateUserUsecase } from '~/core/entities/users/usecases/create-usecase'
+import { IUsersRepository } from '~/core/entities/users/repository/users-repository'
 
 export class CreateUserUseCase implements ICreateUserUsecase {
-  async perform(data: UserData): Promise<UserModel> {
-    const user = data
+  constructor(private repository: IUsersRepository) {}
 
-    return { ...user, id: 'any_id' }
+  async perform(data: UserData): Promise<UserModel> {
+    const receivedData = data
+
+    const createdUser = await this.repository.create(receivedData)
+
+    return createdUser
   }
 }
