@@ -9,6 +9,10 @@ export class CreateUserUseCase implements ICreateUserUsecase {
   async perform(data: UserData): Promise<UserModel> {
     const receivedData = data
 
+    if (!receivedData.name) {
+      throw new Error('name')
+    }
+
     const createdUser = await this.repository.create(receivedData)
 
     return createdUser
