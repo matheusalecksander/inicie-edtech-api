@@ -1,18 +1,16 @@
 import { UserData } from '../../../core/entities/users/data/user-data'
-import { UserModel } from '../../../core/entities/users/models/user-model'
-import { ICreateUserUsecase } from '../../../core/entities/users/usecases/create-usecase'
+import { CreateUserUseCase } from './create-user-usecase'
 
-class CreateUserUseCase implements ICreateUserUsecase {
-  async perform(data: UserData): Promise<UserModel> {
-    const user = data
+function makeSut() {
+  const sut = new CreateUserUseCase()
 
-    return { ...user, id: 'any_id' }
-  }
+  return sut
 }
 
 describe('CreateUserUseCase', () => {
   it('should returns the created user with gerenated id', async () => {
-    const sut = new CreateUserUseCase()
+    const sut = makeSut()
+
     const anyUser: UserData = {
       email: 'any_email@email.com',
       gender: 'any_gender',
@@ -22,6 +20,6 @@ describe('CreateUserUseCase', () => {
 
     const createdUser = await sut.perform(anyUser)
 
-    expect(createdUser).toEqual({ ...anyUser, id: 'any_id' })
+    expect(createdUser).toEqual({ ...anyUser, id: createdUser.id })
   })
 })
