@@ -1,6 +1,6 @@
 import { UserData } from '../../../core/entities/users/data/user-data'
 import { CreateUserUseCase } from './create-user-usecase'
-import { InMemoryUsersRepository } from '../../../repositories/in-memory-users-repository'
+import { InMemoryUsersRepository } from '../../../repositories/users/in-memory-users-repository'
 import { ObjectValidator } from '../../../utils/validators/object-validator'
 import { MissingParamError } from '../../../utils/errors/missing-param-error'
 
