@@ -13,7 +13,8 @@
     "up:dev": "npm run build && docker-compose up",
     "down": "docker-compose down",
     "start": "node ./dist/index.js",
-    "test": "jest --no-cache --watchAll"
+    "test": "jest --no-cache --watchAll",
+    "test:cov": "npm run test -- --collectCoverage"
   },
   "keywords": [],
   "author": "",
