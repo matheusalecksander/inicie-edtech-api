@@ -3,9 +3,24 @@ import { CreateUserUseCase } from './create-user-usecase'
 import { UsersRepository } from '../../../repositories/users-repository'
 import { MissingParamError } from '../../../utils/errors/missing-param-error'
 
+export class ObjectValidator {
+  validate<T>(object: T) {
+    const validation = Object.entries(object)
+
+    for (const object of validation) {
+      if (!object[1]) {
+        throw new MissingParamError(object[0])
+      }
+    }
+
+    return true
+  }
+}
+
 function makeSut() {
   const repository = new UsersRepository()
-  const sut = new CreateUserUseCase(repository)
+  const objectValidator = new ObjectValidator()
+  const sut = new CreateUserUseCase(repository, objectValidator)
 
   return sut
 }
