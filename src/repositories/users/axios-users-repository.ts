@@ -1,17 +1,12 @@
 import { UserData } from '~/core/entities/users/data/user-data'
 import { UserModel } from '~/core/entities/users/models/user-model'
 import { IUsersRepository } from '~/core/entities/users/repository/users-repository'
+import { axiosInstance } from '~/utils/db/axios'
 
-export class InMemoryUsersRepository implements IUsersRepository {
-  private readonly users: UserModel[] = []
-
+export class AxiosUsersRepository implements IUsersRepository {
   async create(data: UserData): Promise<UserModel> {
-    const user = {
-      ...data,
-      id: 'any_id',
-    }
-    this.users.push(user)
+    const newUser: UserModel = await axiosInstance.post('/users', data)
 
-    return user
+    return newUser
   }
 }
