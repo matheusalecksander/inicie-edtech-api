@@ -1,11 +1,11 @@
 import { UserData } from '../../../core/entities/users/data/user-data'
 import { CreateUserUseCase } from './create-user-usecase'
-import { UsersRepository } from '../../../repositories/users-repository'
+import { InMemoryUsersRepository } from '../../../repositories/in-memory-users-repository'
 import { ObjectValidator } from '../../../utils/validators/object-validator'
 import { MissingParamError } from '../../../utils/errors/missing-param-error'
 
 function makeSut() {
-  const repository = new UsersRepository()
+  const repository = new InMemoryUsersRepository()
   const objectValidator = new ObjectValidator()
   const sut = new CreateUserUseCase(repository, objectValidator)
 

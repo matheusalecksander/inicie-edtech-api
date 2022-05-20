@@ -2,8 +2,16 @@ import { UserData } from '~/core/entities/users/data/user-data'
 import { UserModel } from '~/core/entities/users/models/user-model'
 import { IUsersRepository } from '~/core/entities/users/repository/users-repository'
 
-export class UsersRepository implements IUsersRepository {
+export class InMemoryUsersRepository implements IUsersRepository {
+  private readonly users: UserModel[] = []
+
   async create(data: UserData): Promise<UserModel> {
-    return { ...data, id: 'any_id' }
+    const user = {
+      ...data,
+      id: 'any_id',
+    }
+    this.users.push(user)
+
+    return user
   }
 }
