@@ -14,7 +14,8 @@
     "down": "docker-compose down",
     "start": "node ./dist/index.js",
     "test": "jest --no-cache --watchAll",
-    "test:cov": "npm run test -- --collectCoverage"
+    "test:cov": "npm run test -- --collectCoverage",
+    "test:integration": "npm test -- --watch -c jest-integration-test-config.js"
   },
   "keywords": [],
   "author": "",
