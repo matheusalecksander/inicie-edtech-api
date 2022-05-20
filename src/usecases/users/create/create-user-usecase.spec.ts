@@ -67,4 +67,18 @@ describe('CreateUserUseCase', () => {
     const createdUser = sut.perform(invalidUser)
     expect(createdUser).rejects.toThrow(new MissingParamError('gender'))
   })
+
+  it('should throw an error if no status are provided', async () => {
+    const sut = makeSut()
+
+    const invalidUser: UserData = {
+      email: 'any_email@email.com',
+      gender: 'any_gender',
+      name: 'any_name',
+      status: '',
+    }
+
+    const createdUser = sut.perform(invalidUser)
+    expect(createdUser).rejects.toThrow(new MissingParamError('status'))
+  })
 })
