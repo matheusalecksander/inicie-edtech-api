@@ -1,21 +1,8 @@
 import { UserData } from '../../../core/entities/users/data/user-data'
 import { CreateUserUseCase } from './create-user-usecase'
 import { UsersRepository } from '../../../repositories/users-repository'
+import { ObjectValidator } from '../../../utils/validators/object-validator'
 import { MissingParamError } from '../../../utils/errors/missing-param-error'
-
-export class ObjectValidator {
-  validate<T>(object: T) {
-    const validation = Object.entries(object)
-
-    for (const object of validation) {
-      if (!object[1]) {
-        throw new MissingParamError(object[0])
-      }
-    }
-
-    return true
-  }
-}
 
 function makeSut() {
   const repository = new UsersRepository()
