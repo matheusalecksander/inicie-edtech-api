@@ -26,7 +26,7 @@ describe('CreateUserUseCase', () => {
     expect(createdUser).toEqual({ ...anyUser, id: createdUser.id })
   })
 
-  it('should return an error if no name are provided', async () => {
+  it('should throw an error if no name are provided', async () => {
     const sut = makeSut()
 
     const invalidUser: UserData = {
@@ -40,7 +40,7 @@ describe('CreateUserUseCase', () => {
     expect(createdUser).rejects.toThrow(new MissingParamError('name'))
   })
 
-  it('should return an error if no email are provided', async () => {
+  it('should throw an error if no email are provided', async () => {
     const sut = makeSut()
 
     const invalidUser: UserData = {
@@ -52,5 +52,19 @@ describe('CreateUserUseCase', () => {
 
     const createdUser = sut.perform(invalidUser)
     expect(createdUser).rejects.toThrow(new MissingParamError('email'))
+  })
+
+  it('should throw an error if no gender are provided', async () => {
+    const sut = makeSut()
+
+    const invalidUser: UserData = {
+      email: 'any_email@email.com',
+      gender: '',
+      name: 'any_name',
+      status: 'any_status',
+    }
+
+    const createdUser = sut.perform(invalidUser)
+    expect(createdUser).rejects.toThrow(new MissingParamError('gender'))
   })
 })
