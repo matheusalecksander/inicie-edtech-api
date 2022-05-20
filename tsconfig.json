@@ -7,7 +7,7 @@
     "rootDir": "src",
     "baseUrl": "./src",
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["./*"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
