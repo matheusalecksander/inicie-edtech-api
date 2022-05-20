@@ -18,6 +18,10 @@ export class CreateUserUseCase implements ICreateUserUsecase {
       throw new MissingParamError('email')
     }
 
+    if (!receivedData.gender) {
+      throw new MissingParamError('gender')
+    }
+
     const createdUser = await this.repository.create(receivedData)
 
     return createdUser
