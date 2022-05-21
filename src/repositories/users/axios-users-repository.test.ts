@@ -13,6 +13,10 @@ function makeSut() {
 }
 
 describe('Integration test', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should post an user with correct values', async () => {
     const sut = makeSut()
     const expectedResult = {
