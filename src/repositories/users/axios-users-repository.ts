@@ -5,8 +5,8 @@ import { axiosInstance } from '~/utils/db/axios'
 
 export class AxiosUsersRepository implements IUsersRepository {
   async create(data: UserData): Promise<UserModel> {
-    const newUser: UserModel = await axiosInstance.post('/users', data)
+    const newUser = await axiosInstance.post('/users', data)
 
-    return newUser
+    return newUser.data
   }
 }
