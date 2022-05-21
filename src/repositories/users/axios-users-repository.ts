@@ -5,8 +5,12 @@ import { axiosInstance } from '~/utils/db/axios'
 
 export class AxiosUsersRepository implements IUsersRepository {
   async create(data: UserData): Promise<UserModel> {
-    const newUser = await axiosInstance.post('/users', data)
+    try {
+      const newUser = await axiosInstance.post('/users', data)
 
-    return newUser.data
+      return newUser.data
+    } catch (error) {
+      throw new Error('Internal server error')
+    }
   }
 }
