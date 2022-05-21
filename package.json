@@ -13,9 +13,10 @@
     "up:dev": "npm run build && docker-compose up",
     "down": "docker-compose down",
     "start": "node ./dist/index.js",
-    "test": "jest --no-cache --watchAll",
+    "test": "jest",
     "test:cov": "npm run test -- --collectCoverage",
-    "test:integration": "npm test -- --watch -c jest-integration-test-config.js"
+    "test:integration": "npm test -- --watch -c jest-integration-test-config.js",
+    "test:unit": "npm test -- --watchAll -c jest-unit-test-config.js"
   },
   "keywords": [],
   "author": "",
