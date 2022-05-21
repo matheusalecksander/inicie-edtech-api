@@ -33,4 +33,27 @@ describe('Integration test', () => {
     await sut.create(anyUser)
     expect(mockedaxios.post).toHaveBeenCalledWith('/users', anyUser)
   })
+
+  it('should return the user data on response', async () => {
+    const sut = makeSut()
+    const expectedResult = {
+      email: 'any_email@email.com',
+      gender: 'any_gender',
+      name: 'any_name',
+      status: 'any_status',
+      id: 'any_id',
+    }
+
+    const anyUser: UserData = {
+      email: 'any_email@email.com',
+      gender: 'any_gender',
+      name: 'any_name',
+      status: 'any_status',
+    }
+
+    mockedaxios.post.mockResolvedValueOnce({ data: expectedResult })
+    const newUser = await sut.create(anyUser)
+
+    expect(newUser).toEqual(expectedResult)
+  })
 })
