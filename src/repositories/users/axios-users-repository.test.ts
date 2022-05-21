@@ -12,6 +12,21 @@ function makeSut() {
   return sut
 }
 
+const expectedResult = {
+  email: 'any_email@email.com',
+  gender: 'any_gender',
+  name: 'any_name',
+  status: 'any_status',
+  id: 'any_id',
+}
+
+const anyUser: UserData = {
+  email: 'any_email@email.com',
+  gender: 'any_gender',
+  name: 'any_name',
+  status: 'any_status',
+}
+
 describe('Integration test', () => {
   afterEach(() => {
     jest.clearAllMocks()
@@ -19,19 +34,7 @@ describe('Integration test', () => {
 
   it('should post an user with correct values', async () => {
     const sut = makeSut()
-    const expectedResult = {
-      email: 'any_email@email.com',
-      gender: 'any_gender',
-      name: 'any_name',
-      status: 'any_status',
-      id: 'any_id',
-    }
-    const anyUser: UserData = {
-      email: 'any_email@email.com',
-      gender: 'any_gender',
-      name: 'any_name',
-      status: 'any_status',
-    }
+
     mockedaxios.post.mockResolvedValueOnce({ data: expectedResult })
 
     await sut.create(anyUser)
@@ -40,24 +43,18 @@ describe('Integration test', () => {
 
   it('should return the user data on response', async () => {
     const sut = makeSut()
-    const expectedResult = {
-      email: 'any_email@email.com',
-      gender: 'any_gender',
-      name: 'any_name',
-      status: 'any_status',
-      id: 'any_id',
-    }
-
-    const anyUser: UserData = {
-      email: 'any_email@email.com',
-      gender: 'any_gender',
-      name: 'any_name',
-      status: 'any_status',
-    }
 
     mockedaxios.post.mockResolvedValueOnce({ data: expectedResult })
     const newUser = await sut.create(anyUser)
 
     expect(newUser).toEqual(expectedResult)
+  })
+
+  it('should throw if axios throw', async () => {
+    const sut = makeSut()
+
+    const newUser = sut.create(anyUser)
+
+    expect(newUser).rejects.toThrow(new Error('Internal server error'))
   })
 })
