@@ -1,15 +1,20 @@
-import { MissingParamError } from '../errors/missing-param-error'
+import { IObjectValidator } from '../../usecases/interfaces/validators/object-validator'
 
-export class ObjectValidator {
+export class ObjectValidator implements IObjectValidator {
   validate<T>(object: T) {
     const validation = Object.entries(object)
 
     for (const object of validation) {
       if (!object[1]) {
-        throw new MissingParamError(object[0])
+        return {
+          status: false,
+          param: object[0],
+        }
       }
     }
 
-    return true
+    return {
+      status: true,
+    }
   }
 }
