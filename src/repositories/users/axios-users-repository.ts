@@ -16,6 +16,14 @@ export class AxiosUsersRepository implements IUsersRepository {
   }
 
   async getAllUsers(): Promise<UserModel[]> {
-    return []
+    try {
+      const response = await axiosInstance.get('/users')
+
+      const users = response.data
+
+      return users
+    } catch (err) {
+      throw new InternalServerError()
+    }
   }
 }
