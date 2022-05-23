@@ -5,9 +5,9 @@
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "src",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["./*"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
