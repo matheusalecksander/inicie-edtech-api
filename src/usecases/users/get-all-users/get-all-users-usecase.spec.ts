@@ -17,6 +17,7 @@ function makeRepositoryWithError() {
     getAllUsers(): Promise<UserModel[]> {
       throw new InternalServerError()
     }
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     create(data: UserData): Promise<UserModel> {
       throw new Error('Method not implemented.')
     }
