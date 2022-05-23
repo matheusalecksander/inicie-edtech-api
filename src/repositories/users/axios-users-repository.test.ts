@@ -61,6 +61,10 @@ describe('Create User Test', () => {
 })
 
 describe('Get All Users Test', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should calls API and returns an array on successfully', async () => {
     const sut = makeSut()
 
@@ -69,5 +73,13 @@ describe('Get All Users Test', () => {
     const users = await sut.getAllUsers()
 
     expect(users).toBeInstanceOf(Array)
+  })
+
+  it('should throw if axios throw', async () => {
+    const sut = makeSut()
+
+    const users = sut.getAllUsers()
+
+    expect(users).rejects.toThrow(new InternalServerError())
   })
 })
