@@ -13,9 +13,9 @@ export class CreateUserController implements IController {
     const validator = new ObjectValidator()
     const usecase = new CreateUserUseCase(repository, validator)
 
-    const service = usecase.perform(data)
+    const service = await usecase.perform(data)
     console.log(service)
 
-    res.status(201).json(service)
+    res.status(201).json(data).end()
   }
 }
