@@ -28,7 +28,7 @@ const anyUser: UserData = {
   status: 'any_status',
 }
 
-describe('Integration test', () => {
+describe('Create User Test', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
@@ -57,5 +57,17 @@ describe('Integration test', () => {
     const newUser = sut.create(anyUser)
 
     expect(newUser).rejects.toThrow(new InternalServerError())
+  })
+})
+
+describe('Get All Users Test', () => {
+  it('should calls API and returns an array on successfully', async () => {
+    const sut = makeSut()
+
+    mockedaxios.get.mockResolvedValueOnce({ data: [] })
+
+    const users = await sut.getAllUsers()
+
+    expect(users).toBeInstanceOf(Array)
   })
 })
