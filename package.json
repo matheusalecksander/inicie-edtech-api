@@ -16,7 +16,7 @@
     "test": "jest",
     "test:cov": "npm run test -- --collectCoverage",
     "test:integration": "npm test -- --watch -c jest-integration-test-config.js",
-    "test:unit": "npm test -- --watchAll -c jest-unit-test-config.js"
+    "test:unit": "npm test -- --watch -c jest-unit-test-config.js"
   },
   "keywords": [],
   "author": "",
