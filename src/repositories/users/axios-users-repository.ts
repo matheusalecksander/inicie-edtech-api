@@ -14,4 +14,8 @@ export class AxiosUsersRepository implements IUsersRepository {
       throw new InternalServerError()
     }
   }
+
+  async getAllUsers(): Promise<UserModel[]> {
+    return []
+  }
 }
