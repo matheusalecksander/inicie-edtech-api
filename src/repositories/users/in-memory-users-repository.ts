@@ -14,4 +14,8 @@ export class InMemoryUsersRepository implements IUsersRepository {
 
     return user
   }
+
+  async getAllUsers(): Promise<UserModel[]> {
+    return this.users
+  }
 }
