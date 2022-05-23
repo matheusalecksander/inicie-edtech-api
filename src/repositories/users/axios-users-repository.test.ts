@@ -1,6 +1,7 @@
 import { UserData } from '~/core/entities/users/data/user-data'
 import { AxiosUsersRepository } from './axios-users-repository'
 import { axiosInstance } from '~/utils/db/axios'
+import { InternalServerError } from '~/utils/errors/internal-server-error'
 
 jest.mock('~/utils/db/axios')
 
@@ -55,6 +56,6 @@ describe('Integration test', () => {
 
     const newUser = sut.create(anyUser)
 
-    expect(newUser).rejects.toThrow(new Error('Internal server error'))
+    expect(newUser).rejects.toThrow(new InternalServerError())
   })
 })
