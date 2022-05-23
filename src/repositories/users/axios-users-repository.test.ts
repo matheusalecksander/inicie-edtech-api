@@ -1,9 +1,9 @@
-import { UserData } from '~/core/entities/users/data/user-data'
+import { UserData } from '../../core/entities/users/data/user-data'
 import { AxiosUsersRepository } from './axios-users-repository'
-import { axiosInstance } from '~/utils/db/axios'
-import { InternalServerError } from '~/utils/errors/internal-server-error'
+import { axiosInstance } from '../../utils/db/axios'
+import { InternalServerError } from '../../utils/errors/internal-server-error'
 
-jest.mock('~/utils/db/axios')
+jest.mock('../../utils/db/axios')
 
 const mockedaxios = axiosInstance as jest.Mocked<typeof axiosInstance>
 

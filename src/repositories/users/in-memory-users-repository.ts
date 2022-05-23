@@ -1,6 +1,6 @@
-import { UserData } from '~/core/entities/users/data/user-data'
-import { UserModel } from '~/core/entities/users/models/user-model'
-import { IUsersRepository } from '~/core/entities/users/repository/users-repository'
+import { UserData } from '../../core/entities/users/data/user-data'
+import { UserModel } from '../../core/entities/users/models/user-model'
+import { IUsersRepository } from '../../core/entities/users/repository/users-repository'
 
 export class InMemoryUsersRepository implements IUsersRepository {
   private readonly users: UserModel[] = []
