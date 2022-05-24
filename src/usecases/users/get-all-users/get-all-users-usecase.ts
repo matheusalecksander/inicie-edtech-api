@@ -11,8 +11,9 @@ export class GetAllUsersUsecase implements IGetAllUsersUsecase {
       const users: UserModel[] = await this.repository.getAllUsers()
 
       return users
-    } catch (error) {
-      throw new InternalServerError()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new InternalServerError(error.message)
     }
   }
 }
