@@ -1,8 +1,8 @@
+import { RepositoryError } from '../../utils/errors/repository-error'
 import { UserData } from '../../core/entities/users/data/user-data'
 import { UserModel } from '../../core/entities/users/models/user-model'
 import { IUsersRepository } from '../../core/entities/users/repository/users-repository'
 import { axiosInstance } from '../../utils/db/axios'
-import { InternalServerError } from '../../utils/errors/internal-server-error'
 
 export class AxiosUsersRepository implements IUsersRepository {
   async create(data: UserData): Promise<UserModel> {
@@ -10,8 +10,13 @@ export class AxiosUsersRepository implements IUsersRepository {
       const newUser = await axiosInstance.post('/users', data)
 
       return newUser.data
-    } catch (error) {
-      throw new InternalServerError()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new RepositoryError({
+        msg: error.message,
+        data: error.response.data,
+        status: error.response.status,
+      })
     }
   }
 
@@ -22,8 +27,13 @@ export class AxiosUsersRepository implements IUsersRepository {
       const users = response.data
 
       return users
-    } catch (err) {
-      throw new InternalServerError()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new RepositoryError({
+        msg: error.message,
+        data: error.response.data,
+        status: error.response.status,
+      })
     }
   }
 }
