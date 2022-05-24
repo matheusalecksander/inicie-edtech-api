@@ -7,10 +7,17 @@ export class GetAllUsersController implements IController {
   async handle(req: Request, res: Response): Promise<void> {
     const repository = new AxiosUsersRepository()
     const usecase = new GetAllUsersUsecase(repository)
+    try {
+      const service = await usecase.perform()
 
-    const service = await usecase.perform()
-    //console.log(service)
-
-    res.status(201).json(service).end()
+      res.status(200).json(service)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      res.status(error.status).json({
+        error: error.name,
+        msg: error.msg,
+        data: error.data,
+      })
+    }
   }
 }

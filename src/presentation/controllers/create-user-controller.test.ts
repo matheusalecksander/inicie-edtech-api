@@ -12,7 +12,6 @@ describe('CreateUserController', () => {
     }
 
     const response = await request(app).post('/users').send(data)
-    console.log(response.headers)
     expect(response.status).toBe(201)
   })
 })
