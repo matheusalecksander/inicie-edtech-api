@@ -1,6 +1,6 @@
 export class InternalServerError extends Error {
-  constructor() {
-    super(`Internal server error, try again later.`)
-    this.name = 'MissingParamError'
+  constructor(msg: string) {
+    super(`${msg}`)
+    this.name = 'InternalServerError'
   }
 }
