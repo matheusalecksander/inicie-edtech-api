@@ -1,6 +1,6 @@
 import { GetAllUsersUsecase } from './get-all-users-usecase'
 import { InMemoryUsersRepository } from '../../../repositories/users/in-memory-users-repository'
-import { InternalServerError } from '../../../utils/errors/internal-server-error'
+import { RepositoryError } from '../../../utils/errors/repository-error'
 import { IUsersRepository } from '../../../core/entities/users/repository/users-repository'
 import { UserData } from '../../../core/entities/users/data/user-data'
 import { UserModel } from '../../../core/entities/users/models/user-model'
@@ -15,7 +15,11 @@ function makeSut() {
 function makeRepositoryWithError() {
   class InMemoryUsersRepositoryWithError implements IUsersRepository {
     getAllUsers(): Promise<UserModel[]> {
-      throw new InternalServerError()
+      throw new RepositoryError({
+        data: [],
+        msg: 'Error',
+        status: 500,
+      })
     }
     /* eslint-disable @typescript-eslint/no-unused-vars */
     create(data: UserData): Promise<UserModel> {
@@ -40,6 +44,6 @@ describe('GetAllUsersUsecase', () => {
     const sut = makeRepositoryWithError()
 
     const users = sut.perform()
-    expect(users).rejects.toThrow(new InternalServerError())
+    expect(users).rejects.toBeInstanceOf(RepositoryError)
   })
 })
