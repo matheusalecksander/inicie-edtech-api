@@ -4,13 +4,13 @@ interface ErrorReport {
   status: number
 }
 
-export class RepositoryError {
+export class RepositoryError extends Error {
   public readonly name: string = 'Repository Error'
-  public readonly msg: string
   public readonly data: []
   public readonly status: number
 
   constructor({ msg, data, status }: ErrorReport) {
-    ;(this.msg = msg), (this.data = data), (this.status = status)
+    super(`${msg}`)
+    ;(this.data = data), (this.status = status)
   }
 }
