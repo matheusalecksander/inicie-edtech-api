@@ -1,5 +1,7 @@
 import request from 'supertest'
 import { app } from '../server'
+import sinon from 'sinon'
+import { axiosInstance } from '../../utils/db/axios'
 
 describe('GetAllUsersController', () => {
   it('should return an array with users', async () => {
@@ -9,9 +11,15 @@ describe('GetAllUsersController', () => {
   })
 
   it('should throw error if response failed', async () => {
-    const response = request(app).get('/users').abort()
-    console.log(response)
+    sinon.stub(axiosInstance, 'get').throws({
+      message: 'aaa',
+      response: {
+        data: ['aaa'],
+        status: 500,
+      },
+    })
+    const response = await request(app).get('/users')
 
-    expect(response).rejects.toThrow()
+    expect(response.status).toBe(500)
   })
 })
