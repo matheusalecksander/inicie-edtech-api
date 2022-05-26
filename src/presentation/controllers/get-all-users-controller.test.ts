@@ -7,4 +7,11 @@ describe('GetAllUsersController', () => {
 
     expect(response.body).toBeInstanceOf(Array)
   })
+
+  it('should throw error if response failed', async () => {
+    const response = request(app).get('/users').abort()
+    console.log(response)
+
+    expect(response).rejects.toThrow()
+  })
 })

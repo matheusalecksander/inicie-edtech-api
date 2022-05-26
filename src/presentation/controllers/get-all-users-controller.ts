@@ -15,9 +15,10 @@ export class GetAllUsersController implements IController {
     } catch (error: any) {
       res.status(error.status).json({
         error: error.name,
-        msg: error.msg,
+        msg: error.message,
         data: error.data,
       })
     }
   }
 }
+
