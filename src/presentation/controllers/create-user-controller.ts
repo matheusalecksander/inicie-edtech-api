@@ -14,7 +14,7 @@ export class CreateUserController implements IController {
       const usecase = new CreateUserUseCase(repository, validator)
       const service = await usecase.perform(data)
 
-      res.json(service).status(201).end()
+      res.status(201).json(service)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       res.status(error.status).json({
