@@ -5,7 +5,7 @@ import { GetAllUsersController } from '../controllers/get-all-users-controller'
 const router = Router()
 
 router.get('/', (req, res) => {
-  res.send('Hello from API')
+  res.status(200).json({ msg: 'Hello from API' })
 })
 
 router.get('/users', new GetAllUsersController().handle)
