@@ -1,15 +1,6 @@
 import { UserModel } from '../../../core/entities/users/models/user-model'
-import { IUsersRepository } from '../../../core/entities/users/repository/users-repository'
 import { InMemoryUsersRepository } from '../../../repositories/users/in-memory-users-repository'
-
-class LoadUserByIdUsecase {
-  constructor(private repository: IUsersRepository) {}
-  async perform(id: string): Promise<UserModel | undefined> {
-    const result = await this.repository.loadUserById(id)
-
-    return result
-  }
-}
+import { LoadUserByIdUsecase } from './load-user-by-id-usecase'
 
 async function makeSut() {
   const repository = new InMemoryUsersRepository()
@@ -30,5 +21,13 @@ describe('LoadUserById', () => {
 
     const user = await sut.perform(newUser.id)
     expect(user).toMatchObject<UserModel>(newUser)
+  })
+
+  it('should return undefined if id dont existis', async () => {
+    const { sut } = await makeSut()
+
+    const invalidUser = await sut.perform('invalid_id')
+
+    expect(invalidUser).toBe(undefined)
   })
 })
