@@ -1,1 +1,6 @@
-console.log('Hello my docker container')
+import 'dotenv/config'
+import { app } from './presentation/server'
+
+app.listen(3000, () => {
+  console.log('Server is running 🔥🚀')
+})
