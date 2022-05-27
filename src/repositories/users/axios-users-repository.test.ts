@@ -118,7 +118,7 @@ describe('loadUserById', () => {
   it('should throw if axios throw', async () => {
     const sut = makeSut()
 
-    const users = sut.getAllUsers()
+    const users = sut.loadUserById('2')
 
     expect(users).rejects.toBeInstanceOf(Error)
   })
