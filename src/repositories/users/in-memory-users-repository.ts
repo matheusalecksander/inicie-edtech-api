@@ -18,4 +18,10 @@ export class InMemoryUsersRepository implements IUsersRepository {
   async getAllUsers(): Promise<UserModel[]> {
     return this.users
   }
+
+  async loadUserById(id: string): Promise<UserModel | undefined> {
+    const user = this.users.find((item) => item.id === id)
+
+    return user
+  }
 }

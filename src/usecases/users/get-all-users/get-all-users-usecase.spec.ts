@@ -25,6 +25,11 @@ function makeRepositoryWithError() {
     create(data: UserData): Promise<UserModel> {
       throw new Error('Method not implemented.')
     }
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    loadUserById(id: string): Promise<UserModel> {
+      throw new Error('Method not implemented.')
+    }
   }
 
   const sut = new GetAllUsersUsecase(new InMemoryUsersRepositoryWithError())

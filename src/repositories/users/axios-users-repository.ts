@@ -36,4 +36,21 @@ export class AxiosUsersRepository implements IUsersRepository {
       })
     }
   }
+
+  async loadUserById(id: string): Promise<UserModel | undefined> {
+    try {
+      const response = await axiosInstance.get(`/users/${id}`)
+
+      const user = response.data
+
+      return user
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new RepositoryError({
+        msg: error.message,
+        data: error.response.data,
+        status: error.response.status,
+      })
+    }
+  }
 }
