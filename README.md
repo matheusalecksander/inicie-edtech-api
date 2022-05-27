@@ -6,43 +6,50 @@ It's been developed following TDD, SOLID principles and Clean Architecture
 
 ### Project dependencies
 
-  - Express
-  - Axios
-  - Nodemon
-  - Dotenv
-  - Docker
+- Express
+- Axios
+- Nodemon
+- Dotenv
+- Docker
 
 #### How to run
+
 To run it localy you'll need have Docker installed.
 
-  > - First clone this repository
-  ```
-    git clone https://github.com/matheusalecksander/inicie-edtech-api.git
+> - First clone this repository
 
-    cd inicie-edtech-api
-  ```
+```
+  git clone https://github.com/matheusalecksander/inicie-edtech-api.git
 
-  > - Install dependencies (It's needed to run the tests suites)
-  ```
-    npm install
-  ```
+  cd inicie-edtech-api
+```
 
-  > - After install dependencies run follow command to start docker container
-  ```
-    npm run up:detached // It will run docker container in detached mode
-  ```
+> - Install dependencies (It's needed to run the tests suites)
 
-  > - Now you can see API on browser
-  ```
-    access http://localhost:3000/ and you'll see full documentation
-  ```
+```
+  npm install
+```
 
-  > - Stoping container
-  ```
-    npm run down
-  ```
+> - After install dependencies run follow command to start docker container
 
-  > - Running tests
-  ```
-    npm run test:cov // To have full test report
-  ```
+```
+  npm run up:detached // It will run docker container in detached mode
+```
+
+> - Now you can see API on browser
+
+```
+  access http://localhost:3000/ and you'll see full documentation
+```
+
+> - Stoping container
+
+```
+  npm run down
+```
+
+> - Running tests
+
+```
+  npm run test:cov // To have full test report
+```
