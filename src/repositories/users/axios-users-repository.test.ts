@@ -114,4 +114,12 @@ describe('loadUserById', () => {
     expect(users).toBeTruthy()
     expect(mockedaxios.get).toHaveBeenCalledWith('/users/1')
   })
+
+  it('should throw if axios throw', async () => {
+    const sut = makeSut()
+
+    const users = sut.getAllUsers()
+
+    expect(users).rejects.toBeInstanceOf(Error)
+  })
 })
