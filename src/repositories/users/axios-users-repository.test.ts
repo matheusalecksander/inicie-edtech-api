@@ -90,3 +90,28 @@ describe('Get All Users Test', () => {
     expect(users).rejects.toBeInstanceOf(Error)
   })
 })
+
+describe('loadUserById', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('should calls API and returns an user on successfully', async () => {
+    const sut = makeSut()
+
+    mockedaxios.get.mockResolvedValueOnce({
+      data: {
+        name: '',
+        email: '',
+        gender: '',
+        status: '',
+        id: '1',
+      },
+    })
+
+    const users = await sut.loadUserById('1')
+
+    expect(users).toBeTruthy()
+    expect(mockedaxios.get).toHaveBeenCalledWith('/users/1')
+  })
+})
