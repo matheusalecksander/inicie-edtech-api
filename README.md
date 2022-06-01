@@ -30,6 +30,11 @@ To run it localy you'll need have Docker installed.
   npm install
 ```
 
+> - With all dependencies installed, create a .env file and insert an api key for the external api. Access https://gorest.co.in to grab one
+```
+  API_TOKEN=<Your_api_key>
+```
+
 > - After install dependencies run follow command to start docker container
 
 ```
